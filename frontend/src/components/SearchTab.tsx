@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function SearchTab(){
+type SearchTabProps = {
+    onOpenAddNote: () => void
+}
+
+export default function SearchTab({ onOpenAddNote }: SearchTabProps){
 
 const [search, setSearch] = useState("");
 
@@ -8,13 +12,13 @@ const [search, setSearch] = useState("");
         <>
         <h2 className="font-display text-emerald-600 text-5xl">Notes</h2>
         <div className="flex w-full max-w-xs flex-row items-center justify-center gap-1 p-4">
-            <button className="w-16 shrink-0 whitespace-nowrap rounded-md bg-emerald-600 px-2 py-1 text-sm text-white text-center">Add</button>
+            <button type="button" onClick={onOpenAddNote} className="w-16 shrink-0 whitespace-nowrap rounded-md bg-emerald-600 px-2 py-1 text-sm text-white text-center">Add</button>
             <input 
                 type="search"
                 placeholder="Search.."
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
-                className="min-w-0 flex-1 rounded-md border border-black px-2 py-1 text-sm"
+                className="min-w-0 flex-1 rounded-md border-[1.5px] border-black px-2 py-1 text-sm"
             >
             </input>
         </div>
