@@ -1,12 +1,10 @@
-import { useState } from "react";
-
 type SearchTabProps = {
     onOpenAddNote: () => void
+    searchTerm: string
+    onSearchChange: (value: string) => void
 }
 
-export default function SearchTab({ onOpenAddNote }: SearchTabProps){
-
-const [search, setSearch] = useState("");
+export default function SearchTab({ onOpenAddNote, searchTerm, onSearchChange }: SearchTabProps){
 
     return(
         <>
@@ -16,8 +14,8 @@ const [search, setSearch] = useState("");
             <input 
                 type="search"
                 placeholder="Search.."
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
+                onChange={(event) => onSearchChange(event.target.value)}
+                value={searchTerm}
                 className="min-w-0 flex-1 rounded-md border-[1.5px] border-black px-2 py-1 text-sm"
             >
             </input>

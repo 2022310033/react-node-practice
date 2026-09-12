@@ -6,6 +6,7 @@ import AddNoteModal from "./components/AddNoteModal"
 function App() {
   const [isAddNoteOpen, setIsAddNoteOpen] = useState(false)
   const [reloadNotes, setReloadNotes] = useState(0)
+  const [searchTerm, setSearchTerm] = useState("")
 
   function handleNoteAdded() {
     setReloadNotes((current) => current + 1)
@@ -29,11 +30,15 @@ function App() {
       </header>
 
       <div className="flex flex-col justify-center items-center">
-          <SearchTab onOpenAddNote={() => setIsAddNoteOpen(true)} />
+          <SearchTab
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            onOpenAddNote={() => setIsAddNoteOpen(true)}
+          />
       </div>
 
       <div className="flex flex-1 flex-row gap-4 w-full p-4">
-        <NoteContainer reloadNotes={reloadNotes} />
+        <NoteContainer reloadNotes={reloadNotes} searchTerm={searchTerm} />
       </div>
 
       {isAddNoteOpen && (
